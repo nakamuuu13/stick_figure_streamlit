@@ -150,7 +150,7 @@ class StickFigure_VideoProcessor:
                 right_ankle_xy, left_heel_xy, right_heel_xy, left_foot_index_xy, right_foot_index_xy\
                 = get_keypoints(results, height, width)
 
-                img = draw_keypoint(img, self.RADIUS, (self.R, self.G, self.B), self.THICKNESS, nose_xy, left_shoulder_xy, right_shoulder_xy,\
+                img = draw_keypoint(img, self.RADIUS, (self.B, self.G, self.R), self.THICKNESS, nose_xy, left_shoulder_xy, right_shoulder_xy,\
                                     left_elbow_xy, right_elbow_xy, left_wrist_xy, right_wrist_xy, left_hip_xy, right_hip_xy,\
                                     left_knee_xy, right_knee_xy, left_ankle_xy, right_ankle_xy, left_heel_xy, right_heel_xy,\
                                     left_foot_index_xy, right_foot_index_xy, height, width)
@@ -163,9 +163,6 @@ class mp_pose_VideoProcessor:
     def __init__(self) -> None:
         self.RADIUS = int(3.0)
         self.THICKNESS = int(2.0)
-        self.R = 0
-        self.G = 0
-        self.B = 0
 
     def recv(self, frame):
         img = frame.to_ndarray(format="bgr24")
@@ -173,8 +170,8 @@ class mp_pose_VideoProcessor:
         # pose のインスタンス
         mp_pose = mp.solutions.pose
         mp_drawing = mp.solutions.drawing_utils
-        mesh_drawing_spec = mp_drawing.DrawingSpec(thickness=self.THICKNESS, color=(self.R, self.G, self.B))
-        mark_drawing_spec = mp_drawing.DrawingSpec(thickness=self.THICKNESS, circle_radius=self.RADIUS, color=(self.R, self.G, self.B))
+        mesh_drawing_spec = mp_drawing.DrawingSpec(thickness=self.THICKNESS, color=(0, 255, 0))
+        mark_drawing_spec = mp_drawing.DrawingSpec(thickness=self.THICKNESS, circle_radius=self.RADIUS, color=(0, 0, 255))
 
         with mp_pose.Pose(
         min_detection_confidence=0.5,
