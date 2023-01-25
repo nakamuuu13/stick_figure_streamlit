@@ -114,7 +114,8 @@ def draw_keypoint(image, RADIUS, COLOR, THICKNESS, nose_xy, left_shoulder_xy, ri
 
 def callback(frame):
     img = frame.to_ndarray(format="bgr24")
-
+    img = cv2.flip(img, 1)
+    
     return av.VideoFrame.from_ndarray(img, format="bgr24")
 
 
