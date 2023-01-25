@@ -17,7 +17,7 @@ elif option == "棒人間":
 if option == "Nomal":
     webrtc_streamer(
         key="example",
-        video_frame_callback=VideoProcessor.callback(),
+        video_frame_callback=VideoProcessor.callback,
         rtc_configuration={
             "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
             }
