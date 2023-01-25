@@ -4,17 +4,23 @@ import VideoProcessor
 
 st.title("My Stick Figure Streamlit app")
 
+option = st.selectbox("option", list("Nomal", "姿勢推定", "棒人間"))
 
-video_processor_factory = VideoProcessor.StickFigure_VideoProcessor
+if option == "姿勢推定":
+    video_processor_factory = VideoProcessor.mp_pose_VideoProcessor
+elif option == "棒人間":
+    video_processor_factory = VideoProcessor.StickFigure_VideoProcessor
 
-
-ctx = webrtc_streamer(
-    key="example",
-    video_processor_factory=video_processor_factory,
-    rtc_configuration={
-        "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
-    }
-)
+if option == "Nomal":
+    webrtc_streamer(key="example")
+else:    
+    ctx = webrtc_streamer(
+        key="example",
+        video_processor_factory=video_processor_factory,
+        rtc_configuration={
+            "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
+        }
+    )
 if ctx.video_processor:
     st.write("Parameters")
     ctx.video_processor.RADIUS = int(st.slider("顔の大きさ", min_value=1.0, max_value=500.0, step=1.0, value=100.0))

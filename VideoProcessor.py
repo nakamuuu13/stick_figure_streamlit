@@ -112,7 +112,7 @@ def draw_keypoint(image, RADIUS, COLOR, THICKNESS, nose_xy, left_shoulder_xy, ri
 
     return image
 
-
+# 棒人間のクラス
 class StickFigure_VideoProcessor:
     def __init__(self) -> None:
         self.RADIUS = int(100.0)
@@ -154,5 +154,52 @@ class StickFigure_VideoProcessor:
                                     left_elbow_xy, right_elbow_xy, left_wrist_xy, right_wrist_xy, left_hip_xy, right_hip_xy,\
                                     left_knee_xy, right_knee_xy, left_ankle_xy, right_ankle_xy, left_heel_xy, right_heel_xy,\
                                     left_foot_index_xy, right_foot_index_xy, height, width)
+
+        return av.VideoFrame.from_ndarray(img, format="bgr24")
+
+
+# mediapipe_poseのクラス
+class mp_pose_VideoProcessor:
+    def __init__(self) -> None:
+        self.RADIUS = int(3.0)
+        self.THICKNESS = int(2.0)
+        self.R = 0
+        self.G = 0
+        self.B = 0
+
+    def recv(self, frame):
+        img = frame.to_ndarray(format="bgr24")
+
+        # pose のインスタンス
+        mp_pose = mp.solutions.pose
+        mp_drawing = mp.solutions.drawing_utils
+        mesh_drawing_spec = mp_drawing.DrawingSpec(thickness=self.THICKNESS, color=(self.R, self.G, self.B))
+        mark_drawing_spec = mp_drawing.DrawingSpec(thickness=self.THICKNESS, circle_radius=self.RADIUS, color=(self.R, self.G, self.B))
+
+        with mp_pose.Pose(
+        min_detection_confidence=0.5,
+        static_image_mode=False) as pose_detection:
+            # 左右逆転
+            img = cv2.flip(img, 1)
+
+            # 画角の高さ
+            height = img.shape[0]
+            # 画角の幅
+            width = img.shape[1]
+        
+            # pose座標の算出
+            results = pose_detection.process(img)
+
+            if not results.pose_landmarks:
+                    print('not results')
+
+            else:
+                mp_drawing.draw_landmarks(
+                    image=img,
+                    landmark_list=results.pose_landmarks,
+                    connections=mp_pose.POSE_CONNECTIONS,
+                    landmark_drawing_spec=mark_drawing_spec,
+                    connection_drawing_spec=mesh_drawing_spec
+                    )
 
         return av.VideoFrame.from_ndarray(img, format="bgr24")
