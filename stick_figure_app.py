@@ -35,6 +35,7 @@ if option == "姿勢推定":
         st.write("Parameters")
         ctx.video_processor.RADIUS = int(st.slider("点の大きさ", min_value=1.0, max_value=5.0, step=1.0, value=3.0))
         ctx.video_processor.THICKNESS = int(st.slider("線の太さ", min_value=1.0, max_value=5.0, step=1.0, value=2.0))
+        ctx.video_processor.detection = st.slider("検出度", min_value=0.0, max_value=1.0, step=0.1, value=0.5)
 
 elif option == "棒人間":
     if ctx.video_processor:

@@ -164,6 +164,7 @@ class mp_pose_VideoProcessor:
     def __init__(self) -> None:
         self.RADIUS = int(3.0)
         self.THICKNESS = int(2.0)
+        self.detection = 0.5
 
     def recv(self, frame):
         img = frame.to_ndarray(format="bgr24")
@@ -175,7 +176,7 @@ class mp_pose_VideoProcessor:
         mark_drawing_spec = mp_drawing.DrawingSpec(thickness=self.THICKNESS, circle_radius=self.RADIUS, color=(0, 0, 255))
 
         with mp_pose.Pose(
-        min_detection_confidence=0.5,
+        min_detection_confidence=self.detection,
         static_image_mode=False) as pose_detection:
             # 左右逆転
             img = cv2.flip(img, 1)
