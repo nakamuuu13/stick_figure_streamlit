@@ -124,7 +124,7 @@ class VideoProcessor:
         self.R = 0
         self.G = 0
         self.B = 0
-        self.COLOR = (self.R, self.G, self.B)
+        # self.COLOR = (self.R, self.G, self.B)
 
     def recv(self, frame):
         img = frame.to_ndarray(format="bgr24")
@@ -155,7 +155,7 @@ class VideoProcessor:
                 right_ankle_xy, left_heel_xy, right_heel_xy, left_foot_index_xy, right_foot_index_xy\
                 = get_keypoints(results, height, width)
 
-                img = draw_keypoint(img, self.RADIUS, self.COLOR, self.THICKNESS, nose_xy, left_shoulder_xy, right_shoulder_xy,\
+                img = draw_keypoint(img, self.RADIUS, (self.R, self.G, self.B), self.THICKNESS, nose_xy, left_shoulder_xy, right_shoulder_xy,\
                                     left_elbow_xy, right_elbow_xy, left_wrist_xy, right_wrist_xy, left_hip_xy, right_hip_xy,\
                                     left_knee_xy, right_knee_xy, left_ankle_xy, right_ankle_xy, left_heel_xy, right_heel_xy,\
                                     left_foot_index_xy, right_foot_index_xy, height, width)
