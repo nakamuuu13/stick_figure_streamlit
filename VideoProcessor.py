@@ -112,6 +112,12 @@ def draw_keypoint(image, RADIUS, COLOR, THICKNESS, nose_xy, left_shoulder_xy, ri
 
     return image
 
+def callback(frame):
+    img = frame.to_ndarray(format="bgr24")
+
+    return av.VideoFrame.from_ndarray(img, format="bgr24")
+
+
 # 棒人間のクラス
 class StickFigure_VideoProcessor:
     def __init__(self) -> None:

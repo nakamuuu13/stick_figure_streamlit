@@ -15,7 +15,7 @@ elif option == "棒人間":
     
 
 if option == "Nomal":
-    webrtc_streamer(key="example")
+    webrtc_streamer(key="example", video_frame_callback=VideoProcessor.callback)
 else:    
     ctx = webrtc_streamer(
         key="example",
