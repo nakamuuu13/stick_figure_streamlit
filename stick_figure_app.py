@@ -1,6 +1,7 @@
 import streamlit as st
 from streamlit_webrtc import webrtc_streamer
 import VideoProcessor
+from VideoProcessor import callback
 
 st.title("My Stick Figure Streamlit app")
 
@@ -17,7 +18,7 @@ elif option == "棒人間":
 if option == "Nomal":
     webrtc_streamer(
         key="example",
-        video_frame_callback=VideoProcessor.callback,
+        video_frame_callback=callback,
         rtc_configuration={
             "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
             }
