@@ -122,7 +122,7 @@ class VideoProcessor:
         self.RADIUS = int(100.0)
         self.THICKNESS = int(50.0)
         self.R = 0
-        self.G = 255
+        self.G = 0
         self.B = 0
         self.COLOR = (self.R, self.G, self.B)
 
