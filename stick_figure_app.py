@@ -35,9 +35,7 @@ if option == "姿勢推定":
         st.write("Parameters")
         ctx.video_processor.RADIUS = int(st.slider("点の大きさ", min_value=1.0, max_value=5.0, step=1.0, value=3.0))
         ctx.video_processor.THICKNESS = int(st.slider("線の太さ", min_value=1.0, max_value=5.0, step=1.0, value=2.0))
-        ctx.video_processor.R = st.slider('赤', min_value=0, max_value=255, value=0)
-        ctx.video_processor.G = st.slider('緑', min_value=0, max_value=255, value=255)
-        ctx.video_processor.B = st.slider('青', min_value=0, max_value=255, value=0)
+
 elif option == "棒人間":
     if ctx.video_processor:
         st.write("Parameters")
