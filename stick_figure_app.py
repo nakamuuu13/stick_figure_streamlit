@@ -4,7 +4,8 @@ import VideoProcessor
 
 st.title("My Stick Figure Streamlit app")
 
-option = st.selectbox("option", list("Nomal", "姿勢推定", "棒人間"))
+option = st.selectbox("option?",
+                     ["Nomal", "姿勢推定", "棒人間"])
 
 if option == "姿勢推定":
     video_processor_factory = VideoProcessor.mp_pose_VideoProcessor
