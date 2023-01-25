@@ -1,7 +1,15 @@
 import streamlit as st
 from streamlit_webrtc import webrtc_streamer
+import cv2
+import av
 import VideoProcessor
-from VideoProcessor import callback
+
+
+def callback(frame):
+    img = frame.to_ndarray(format="bgr24")
+    img = cv2.flip(img, 1)
+    
+    return av.VideoFrame.from_ndarray(img, format="bgr24")
 
 st.title("My Stick Figure Streamlit app")
 
