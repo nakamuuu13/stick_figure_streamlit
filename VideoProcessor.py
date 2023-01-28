@@ -202,3 +202,11 @@ class mp_pose_VideoProcessor:
                     )
 
         return av.VideoFrame.from_ndarray(img, format="bgr24")
+
+class Nomal_VideoProcessor:
+    def recv(self, frame):
+        img = frame.to_ndarray(format="bgr24")
+
+        img = cv2.flip(img, 1)
+
+        return av.VideoFrame.from_ndarray(img, format="bgr24")
