@@ -79,7 +79,7 @@ def get_keypoints(results, height, width):
            left_heel_xy, right_heel_xy, left_foot_index_xy, right_foot_index_xy
 
 # 各部位の座標を描画
-def draw_keypoint(image, RADIUS, COLOR, THICKNESS, nose_xy, left_shoulder_xy, right_shoulder_xy,\
+def draw_keypoint(image, radius, color, thickness, nose_xy, left_shoulder_xy, right_shoulder_xy,\
                   left_elbow_xy, right_elbow_xy, left_wrist_xy, right_wrist_xy, left_hip_xy, right_hip_xy,\
                   left_knee_xy, right_knee_xy, left_ankle_xy, right_ankle_xy, left_heel_xy, right_heel_xy,\
                   left_foot_index_xy, right_foot_index_xy, height, width):
@@ -89,26 +89,26 @@ def draw_keypoint(image, RADIUS, COLOR, THICKNESS, nose_xy, left_shoulder_xy, ri
     image.fill(255)
 
     # 頭
-    cv2.circle(image, (nose_xy[0], nose_xy[1]), RADIUS, COLOR, thickness=-1)
+    cv2.circle(image, (nose_xy[0], nose_xy[1]), radius, color, thickness=-1)
 
     # 胴体
     points = np.array([(left_shoulder_xy), (right_shoulder_xy), (right_hip_xy), (left_hip_xy)])
-    cv2.fillConvexPoly(image, points, color=COLOR, lineType=cv2.LINE_8, shift=0)
+    cv2.fillConvexPoly(image, points, color=color, lineType=cv2.LINE_8, shift=0)
 
     # 腕, 脚
-    cv2.line(image, (left_shoulder_xy[0], left_shoulder_xy[1]), (left_elbow_xy[0], left_elbow_xy[1]), COLOR, THICKNESS, lineType=cv2.LINE_8, shift=0)
-    cv2.line(image, (left_elbow_xy[0], left_elbow_xy[1]), (left_wrist_xy[0], left_wrist_xy[1]), COLOR, THICKNESS, lineType=cv2.LINE_8, shift=0)
-    cv2.line(image, (right_shoulder_xy[0], right_shoulder_xy[1]), (right_elbow_xy[0], right_elbow_xy[1]), COLOR, THICKNESS, lineType=cv2.LINE_8, shift=0)
-    cv2.line(image, (right_elbow_xy[0], right_elbow_xy[1]), (right_wrist_xy[0], right_wrist_xy[1]), COLOR, THICKNESS, lineType=cv2.LINE_8, shift=0)
+    cv2.line(image, (left_shoulder_xy[0], left_shoulder_xy[1]), (left_elbow_xy[0], left_elbow_xy[1]), color, thickness, lineType=cv2.LINE_8, shift=0)
+    cv2.line(image, (left_elbow_xy[0], left_elbow_xy[1]), (left_wrist_xy[0], left_wrist_xy[1]), color, thickness, lineType=cv2.LINE_8, shift=0)
+    cv2.line(image, (right_shoulder_xy[0], right_shoulder_xy[1]), (right_elbow_xy[0], right_elbow_xy[1]), color, thickness, lineType=cv2.LINE_8, shift=0)
+    cv2.line(image, (right_elbow_xy[0], right_elbow_xy[1]), (right_wrist_xy[0], right_wrist_xy[1]), color, thickness, lineType=cv2.LINE_8, shift=0)
 
-    cv2.line(image, (left_hip_xy[0], left_hip_xy[1]), (left_knee_xy[0], left_knee_xy[1]), COLOR, THICKNESS, lineType=cv2.LINE_8, shift=0)
-    cv2.line(image, (left_knee_xy[0], left_knee_xy[1]), (left_ankle_xy[0], left_ankle_xy[1]), COLOR, THICKNESS, lineType=cv2.LINE_8, shift=0)    
-    cv2.line(image, (left_ankle_xy[0], left_ankle_xy[1]), (left_heel_xy[0], left_heel_xy[1]), COLOR, THICKNESS, lineType=cv2.LINE_8, shift=0)
-    cv2.line(image, (left_heel_xy[0], left_heel_xy[1]), (left_foot_index_xy[0], left_foot_index_xy[1]), COLOR, THICKNESS, lineType=cv2.LINE_8, shift=0)
-    cv2.line(image, (right_hip_xy[0], right_hip_xy[1]), (right_knee_xy[0], right_knee_xy[1]), COLOR, THICKNESS, lineType=cv2.LINE_8, shift=0)
-    cv2.line(image, (right_knee_xy[0], right_knee_xy[1]), (right_ankle_xy[0], right_ankle_xy[1]), COLOR, THICKNESS, lineType=cv2.LINE_8, shift=0)    
-    cv2.line(image, (right_ankle_xy[0], right_ankle_xy[1]), (right_heel_xy[0], right_heel_xy[1]), COLOR, THICKNESS, lineType=cv2.LINE_8, shift=0)
-    cv2.line(image, (right_heel_xy[0], right_heel_xy[1]), (right_foot_index_xy[0], right_foot_index_xy[1]), COLOR, THICKNESS, lineType=cv2.LINE_8, shift=0)    
+    cv2.line(image, (left_hip_xy[0], left_hip_xy[1]), (left_knee_xy[0], left_knee_xy[1]), color, thickness, lineType=cv2.LINE_8, shift=0)
+    cv2.line(image, (left_knee_xy[0], left_knee_xy[1]), (left_ankle_xy[0], left_ankle_xy[1]), color, thickness, lineType=cv2.LINE_8, shift=0)    
+    cv2.line(image, (left_ankle_xy[0], left_ankle_xy[1]), (left_heel_xy[0], left_heel_xy[1]), color, thickness, lineType=cv2.LINE_8, shift=0)
+    cv2.line(image, (left_heel_xy[0], left_heel_xy[1]), (left_foot_index_xy[0], left_foot_index_xy[1]), color, thickness, lineType=cv2.LINE_8, shift=0)
+    cv2.line(image, (right_hip_xy[0], right_hip_xy[1]), (right_knee_xy[0], right_knee_xy[1]), color, thickness, lineType=cv2.LINE_8, shift=0)
+    cv2.line(image, (right_knee_xy[0], right_knee_xy[1]), (right_ankle_xy[0], right_ankle_xy[1]), color, thickness, lineType=cv2.LINE_8, shift=0)    
+    cv2.line(image, (right_ankle_xy[0], right_ankle_xy[1]), (right_heel_xy[0], right_heel_xy[1]), color, thickness, lineType=cv2.LINE_8, shift=0)
+    cv2.line(image, (right_heel_xy[0], right_heel_xy[1]), (right_foot_index_xy[0], right_foot_index_xy[1]), color, thickness, lineType=cv2.LINE_8, shift=0)    
 
     return image
 
@@ -116,8 +116,8 @@ def draw_keypoint(image, RADIUS, COLOR, THICKNESS, nose_xy, left_shoulder_xy, ri
 # 棒人間のクラス
 class StickFigure_VideoProcessor:
     def __init__(self) -> None:
-        self.RADIUS = int(100.0)
-        self.THICKNESS = int(50.0)
+        self.radius = int(100.0)
+        self.thickness = int(50.0)
         self.R = 0
         self.G = 0
         self.B = 0
@@ -151,7 +151,7 @@ class StickFigure_VideoProcessor:
                 right_ankle_xy, left_heel_xy, right_heel_xy, left_foot_index_xy, right_foot_index_xy\
                 = get_keypoints(results, height, width)
 
-                img = draw_keypoint(img, self.RADIUS, (self.B, self.G, self.R), self.THICKNESS, nose_xy, left_shoulder_xy, right_shoulder_xy,\
+                img = draw_keypoint(img, self.radius, (self.B, self.G, self.R), self.thickness, nose_xy, left_shoulder_xy, right_shoulder_xy,\
                                     left_elbow_xy, right_elbow_xy, left_wrist_xy, right_wrist_xy, left_hip_xy, right_hip_xy,\
                                     left_knee_xy, right_knee_xy, left_ankle_xy, right_ankle_xy, left_heel_xy, right_heel_xy,\
                                     left_foot_index_xy, right_foot_index_xy, height, width)
@@ -162,8 +162,8 @@ class StickFigure_VideoProcessor:
 # mediapipe_poseのクラス
 class mp_pose_VideoProcessor:
     def __init__(self) -> None:
-        self.RADIUS = int(3.0)
-        self.THICKNESS = int(2.0)
+        self.radius = int(3.0)
+        self.thickness = int(2.0)
         self.detection = 0.5
 
     def recv(self, frame):
@@ -172,8 +172,8 @@ class mp_pose_VideoProcessor:
         # pose のインスタンス
         mp_pose = mp.solutions.pose
         mp_drawing = mp.solutions.drawing_utils
-        mesh_drawing_spec = mp_drawing.DrawingSpec(thickness=self.THICKNESS, color=(0, 255, 0))
-        mark_drawing_spec = mp_drawing.DrawingSpec(thickness=self.THICKNESS, circle_radius=self.RADIUS, color=(0, 0, 255))
+        mesh_drawing_spec = mp_drawing.DrawingSpec(thickness=self.thickness, color=(0, 255, 0))
+        mark_drawing_spec = mp_drawing.DrawingSpec(thickness=self.thickness, circle_radius=self.radius, color=(0, 0, 255))
 
         with mp_pose.Pose(
         min_detection_confidence=self.detection,
