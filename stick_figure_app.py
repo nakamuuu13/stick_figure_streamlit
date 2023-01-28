@@ -8,7 +8,7 @@ st.title("My Stick Figure Streamlit app")
 option = st.selectbox("option?",
                      ["Nomal", "姿勢推定", "棒人間"])
 
-if option == "棒人間":
+if option == "Nomal":
     video_processor_factory = VideoProcessor.Nomal_VideoProcessor
 
     ctx = webrtc_streamer(
