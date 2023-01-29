@@ -116,8 +116,8 @@ def draw_keypoint(image, radius, color, thickness, nose_xy, left_shoulder_xy, ri
 # 棒人間のクラス
 class StickFigure_VideoProcessor:
     def __init__(self) -> None:
-        self.radius = int(100.0)
-        self.thickness = int(50.0)
+        self.radius = int(30.0)
+        self.thickness = int(15.0)
         self.R = 0
         self.G = 0
         self.B = 0
